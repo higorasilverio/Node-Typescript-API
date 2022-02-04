@@ -17,16 +17,24 @@
     "noImplicitReturns": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"],
       "@test/*": ["./test/*"]
     },
-    "rootDirs": ["./src", "./test"],
-    "typeRoots": ["node_modules/@types"],
+    "rootDirs": [
+      "./src",
+      "./test"
+    ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts"],
-  "exclude": ["./node_modules/*", "dist"]
+  "include": [
+    "./src/**/*.ts",
+    "./test/**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules/*",
+    "dist"
+  ]
 }

@@ -1,3 +1,4 @@
+import { coordinates } from './fixtures/coordinates';
 import { StormGlass } from '@src/clients/stormGlass';
 import * as HTTPUtil from '@src/util/request';
 import stormGlassWeather3HoursFixtures from '@test/fixtures/storm_glass_weather_3_hours.json';
@@ -12,10 +13,9 @@ describe('StormGlass client', () => {
 
   const mockedRequest = new HTTPUtil.Request() as jest.Mocked<HTTPUtil.Request>;
 
-  it('should return the normalized forecast from the StormGlass service', async () => {
-    const lat = -33.792726;
-    const lng = 151.289824;
+  const { lat, lng } = coordinates;
 
+  it('should return the normalized forecast from the StormGlass service', async () => {
     mockedRequest.get.mockResolvedValue({
       data: stormGlassWeather3HoursFixtures,
     } as HTTPUtil.Response);
@@ -27,8 +27,6 @@ describe('StormGlass client', () => {
   });
 
   it('should exclude incomplete data points', async () => {
-    const lat = -33.792726;
-    const lng = 151.289824;
     const incompleteResponse = {
       hours: [
         {
@@ -51,9 +49,6 @@ describe('StormGlass client', () => {
   });
 
   it('should get a generic error from StormGlass service when the request fail before reaching the service', async () => {
-    const lat = -33.792726;
-    const lng = 151.289824;
-
     const error = new Error('Network Error');
     mockedRequest.get.mockRejectedValue(error);
 
@@ -65,9 +60,6 @@ describe('StormGlass client', () => {
   });
 
   it('should get an StormGlassResponseError when the StormGlass service responds with error', async () => {
-    const lat = -33.792726;
-    const lng = 151.289824;
-
     const error = {
       response: {
         status: 429,

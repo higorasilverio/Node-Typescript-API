@@ -1,8 +1,7 @@
 import { coordinates } from './fixtures/coordinates';
 import { StormGlass } from '@src/clients/stormGlass';
 import * as HTTPUtil from '@src/util/request';
-import stormGlassWeather3HoursFixtures from '@test/fixtures/storm_glass_weather_3_hours.json';
-import stormGlassNormalized3HoursFixtures from '@test/fixtures/storm_glass_normalized_response_3_hours.json';
+import { stormGlassWeather, stormGlassNormalized } from '@test/fixtures';
 
 jest.mock('@src/util/request');
 
@@ -17,13 +16,13 @@ describe('StormGlass client', () => {
 
   it('should return the normalized forecast from the StormGlass service', async () => {
     mockedRequest.get.mockResolvedValue({
-      data: stormGlassWeather3HoursFixtures,
+      data: stormGlassWeather,
     } as HTTPUtil.Response);
 
     const stormGlass = new StormGlass(mockedRequest);
     const response = await stormGlass.fetchPoints(lat, lng);
 
-    expect(response).toEqual(stormGlassNormalized3HoursFixtures);
+    expect(response).toEqual(stormGlassNormalized);
   });
 
   it('should exclude incomplete data points', async () => {

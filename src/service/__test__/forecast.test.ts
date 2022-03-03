@@ -1,6 +1,6 @@
 import { ForecastProcessingInternalError } from './../forecast';
 import { StormGlass } from '@src/clients/stormGlass';
-import stormGlassNormalizedResponseFixture from '@test/fixtures/storm_glass_normalized_response_3_hours.json';
+import { stormGlassNormalized } from '@test/fixtures';
 import { Forecast } from '../forecast';
 import { beaches, expectedResponse } from './fixtures';
 
@@ -10,9 +10,7 @@ describe('Forecast Service', () => {
   const mockedStormGlassService = new StormGlass() as jest.Mocked<StormGlass>;
 
   it('should return the forecast for a list of beaches', async () => {
-    mockedStormGlassService.fetchPoints.mockResolvedValue(
-      stormGlassNormalizedResponseFixture
-    );
+    mockedStormGlassService.fetchPoints.mockResolvedValue(stormGlassNormalized);
 
     const forecast = new Forecast(mockedStormGlassService);
     const beachesWithRating = await forecast.processForecastForBeaches(beaches);

@@ -1,11 +1,13 @@
-import { newBeach } from './newBeach';
 import { newBeachWithWrongLat } from './newBeachWithWrongLat';
 import { stormGlassNormalized } from './stormGlassNormalized';
 import { stormGlassWeather } from './stormGlassWeather';
+import { defaultBeach } from './defaultBeach';
+import { defaultForecastResponse } from './defaultForecastResponse';
 
 export {
-  newBeach,
   stormGlassNormalized,
   stormGlassWeather,
   newBeachWithWrongLat,
+  defaultBeach,
+  defaultForecastResponse,
 };

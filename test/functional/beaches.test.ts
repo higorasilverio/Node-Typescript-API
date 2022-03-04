@@ -1,15 +1,17 @@
 import { Beach } from '@src/models/beach';
-import { newBeach, newBeachWithWrongLat } from '../fixtures';
+import { defaultBeach, newBeachWithWrongLat } from '../fixtures';
 
 describe('Beaches functional testes', () => {
   beforeAll(async () => await Beach.deleteMany({}));
 
   describe('When creating a beach', () => {
     it('should create a beach with success', async () => {
-      const response = await global.testRequest.post('/beaches').send(newBeach);
+      const response = await global.testRequest
+        .post('/beaches')
+        .send(defaultBeach);
       expect(response.status).toBe(201);
       //object containing matches the keys and values, even if includes other keys such as id
-      expect(response.body).toEqual(expect.objectContaining(newBeach));
+      expect(response.body).toEqual(expect.objectContaining(defaultBeach));
     });
 
     it('should return 422 when there is a validatin error', async () => {
@@ -29,7 +31,9 @@ describe('Beaches functional testes', () => {
         .spyOn(Beach.prototype, 'save')
         .mockRejectedValueOnce('fail to create beach');
 
-      const response = await global.testRequest.post('/beaches').send(newBeach);
+      const response = await global.testRequest
+        .post('/beaches')
+        .send(defaultBeach);
       expect(response.status).toBe(500);
       expect(response.body).toEqual({
         error: 'Internal Server Error',

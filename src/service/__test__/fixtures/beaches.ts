@@ -1,4 +1,4 @@
-import { Beach, BeachPosition } from '@src/service/forecast';
+import { Beach, BeachPosition } from '@src/models/beach';
 
 export const beaches: Beach[] = [
   {
@@ -6,6 +6,5 @@ export const beaches: Beach[] = [
     lng: 151.289824,
     name: 'Manly',
     position: BeachPosition.E,
-    user: 'some-id',
   },
 ];

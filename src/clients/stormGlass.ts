@@ -100,6 +100,7 @@ export class StormGlass {
           },
         }
       );
+      console.log('response', response.data);
       return this.normalizeResponse(response.data);
     } catch (err: unknown) {
       if (HTTPUtil.Request.isRequestError(err as CreatedAxiosError)) {

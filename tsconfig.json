@@ -24,7 +24,8 @@
     },
     "rootDirs": ["./src", "./test"],
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true
   },
   "include": ["./src/**/*.ts", "./test/**/*.ts"],
   "exclude": ["./node_modules/*", "dist"]
